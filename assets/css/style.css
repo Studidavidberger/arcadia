@@ -1,0 +1,562 @@
+/*
+
+### elements de l'application
+# Page visiteurs
+accueil
+RGPD
+services - restauration, visite guide, visite petit train
+animaux - vue global, vue detaillé, et avis.
+habitats - vue global, vue detaillé.
+ecologies - le fonctionnement de nos energies.
+mini-jeu sur les animaux du zoo.
+
+# Pages membres Arcadia
+compte employés
+dashboard admin
+
+# Fonctionnalité
+Systeme de validation des avis
+Creer et modifier des comptes.
+application de recherche d'animaux par filtre
+Billeterie en ligne
+Plan du zoo.
+droit des membres du zoo de changer horaires, animaux, habitats, et services proposées.
+compteur de vues animaux
+Serveur de messagerie
+
+--------- infos
+
+# liens - 5
+depot Git
+Lien de l'application
+Gestion de projet
+Fichier readme déployer l'application en local
+Documentation du projet en PDF
+
+*/
+
+/* PROPRIÉTÉS GENERALES */
+* {
+    padding: 0;
+    margin: 0;
+    /* box-sizing: border-box;*/
+    font-family: "p_defaut";
+    color: #e6e49f;
+    text-shadow: #000 1px 1px 10px;
+    cursor: url("../../mouse_01.png"), auto;
+}
+a:hover img:hover {
+    cursor: url("../../mouse_02.png"), auto;
+}
+html {
+    scroll-behavior: smooth;
+    background: black;
+    overflow: auto;}
+.title1 {
+    top: 0px;
+    width: 90%;
+    padding: 2%;
+    position: absolute;
+    font-size: 32px;
+}
+.title2 {
+    width: 100%;
+    width: 90%;
+    padding: 2%;
+    position: absolute;
+    font-size: 30px;
+}
+.degrad {
+    background: linear-gradient(45deg, #989c94, #FFF0);
+}
+
+/* TEST */
+/*
+.test {
+    font-family: 'p_jeu', cursive;
+    position: sticky;
+    top: 80%;
+    z-index: 1;
+    font-size: 50px;
+}
+ */
+
+
+/* NAVBAR */
+.navbar {
+    justify-content: space-between;
+    flex-direction: row;
+    display: flex;
+    background-color: #9aa082;
+    background: linear-gradient(45deg, #989c94, #FFF0);
+}
+.navbar_right {
+    align-items: center;
+    display: flex;
+}
+.navbar-brand {
+    color: white;
+    font-weight: bold;
+}
+
+@keyframes anim-burger {
+    from {
+        rotate: 0deg;
+    }
+    to {
+        rotate: 720deg;
+    }
+}
+.anim-burger:hover {
+    animation-name: anim-burger;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+@keyframes anim-cat {
+    from {
+        transform: translate(-500px);
+    }
+    to {
+        transform: translate(500px);
+    }
+}
+.anim-cat {
+    animation-name: anim-cat;
+    animation-duration: 6s;
+    animation-timing-function: linear;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+.cat:hover .cat-txt {display: block;}
+
+.cat-txt {
+    display: none;
+    background: white;
+    padding: 0%;
+    border: solid 5px red;
+    margin: -4rem;
+    color: black;
+    text-shadow: none;
+    font-size: 3rem;
+    left: 9rem;
+    position: absolute;
+    width: 25rem;
+    font-family: "p_jeu", auto;
+}
+
+/* LIENS ET BOUTONS */
+.hovrbl {filter: brightness(20%)}
+.hovrbl:hover {filter: brightness(100%)}
+
+
+/* HERO BANNER */
+.cont_hero {
+    position: relative;
+    text-align: center;
+    z-index: 0;
+    min-height: 30rem;
+}
+.hero_p {
+    position: absolute;
+    bottom: 0px;
+    padding: 16px;
+    text-align: left;
+    max-width: 500px;
+}
+.hero_bg {
+    object-fit: cover;
+    width: 100%;
+}
+
+/* LANGUES */
+.lang-container {
+    position: relative;
+    display: inline-block;
+}
+.lang {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: #e5ff9c;
+    box-shadow: 0px 0px 10px 3px black;
+    top: -13rem;
+    left: 3rem;
+    padding: 10%;
+    font-size: 1rem;
+}
+.lang-sel a {
+    font-size: 32px;
+}
+.lang-sel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.lang-sel:hover .lang-cursor {
+    display: flex;
+    font-size: 64px;
+}
+.lang-cursor {
+    display: none;
+    position: absolute;
+    left: -3rem;
+    color: red;
+}
+.lang-cursor-valid {
+    display: flex;
+    color: green;
+    font-size: 64px;
+}
+
+
+/* GAME */
+.game_cont {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+}
+.game {
+    display: none;
+    font-family: 'p_jeu', cursive;
+    position: sticky;
+    top: 80%;
+    z-index: 1;
+    background-color: #222;
+    width: 50%;
+    text-align: center;
+    padding: 16px;
+    border-radius: 10px;
+    border: 2px white solid;
+}
+
+.question1 {
+    text-align: center;
+    align-items: center;
+    display: block;
+    position: absolute;
+    top: 35%;
+    left: 10%;
+}
+.game_img {
+    width: 128px;
+}
+.lang-container:hover .lang-cont {display: flex;}
+.game_cont:hover .question1 {display: none;}
+
+
+/* ANIMAUX */
+.animain {
+    padding-top: 8%;
+    display: flex;
+    flex-direction: row;
+}
+.gal-disp {
+    border-right: solid 8px #492f10;
+    display: flex;
+    padding-bottom: 2%;
+    flex-direction: column;
+    width: 50%;
+    background-image: url("/assets/img/habi/habi_8.jpg");
+    background-repeat: repeat;
+    background-position: left;
+}
+.gal-tit1 {
+    display: flex;
+    position: relative;
+    left: 50%;
+    width: 75%;
+    text-align: center;
+    font-size: 40px;
+}
+.gal-grid {
+    gap: 2rem;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+}
+.gal-cont {
+    text-align: center;
+    border-bottom: 3px solid #492f10;
+}
+.gal-cont p {
+    font-size: 150%;
+}
+.gal-title {
+    text-align: center;
+    background-color: #262626;
+    border: solid 2px white;
+}
+
+
+/* AVIS */
+.avis {
+    position: relative;
+    left: 5rem;
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
+    margin: 20px;
+    width: 60%;
+    border: solid 2px;
+    box-shadow: 10px 10px 20px 10px black;
+    background-color: #492f10;
+    opacity: .8;
+}
+.avis-r {
+    position: relative;
+    left: -5rem;
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
+    width: 60%;
+    border: solid 2px white;
+    box-shadow: 10px 10px 20px 10px black;
+    background-color: #266117;
+    opacity: .8;
+}
+.avis-title {
+    width: 100%;
+    text-align: center;
+    background-color: #262626;
+    border: solid 2px white;
+}
+.avis-conteneur {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background-image: url("/assets/img/anim/anim_11.png");
+    background-repeat: repeat;
+    background-position: center;
+}
+.avis-date {
+    font-size: 12px;
+}
+.pseudo {
+    display: flex;
+    padding: .2rem;
+}
+
+
+/* SERVICES */
+.serv-cont {
+    padding: 8% 1% 5%;
+    display: flex;
+    flex-direction: row;
+    background-image: url("/assets/img/habi/habi_6.jpg");
+    background-repeat: repeat;
+    background-position: left bottom;
+    min-height: 30rem;
+}
+.serv-cont img {
+    display: flex;
+    border: solid 2px white;
+    border-radius: 88px 0;
+    height: 5rem;
+    width: 450px;
+    object-fit: cover;
+}
+.serv-left {
+    width: 50%;
+}
+.serv-left div {
+    position: relative;
+    left: -15rem;
+}
+.serv-left div a p {
+    position: relative;
+    flex-direction: column;
+    padding-top: 10px;
+    width: 450px;
+    display: flex;
+    align-items: end;
+}
+.serv-cont img:hover {
+    border: solid 2px red;
+}
+.serv-cont .serv-anim-left:hover {
+    animation: serv-anim-left .5s ;
+    animation-fill-mode: forwards;
+}
+@keyframes serv-anim-left {
+    from {
+        transform: translate(0);
+    }
+    to {
+        transform: translate(150px);
+    }
+}
+
+.serv-right div {
+    position: relative;
+    left: 60%;
+}
+.serv-right div a p {
+    position: relative;
+    flex-direction: column;
+    padding-top: 10px;
+    width: 350px;
+    display: flex;
+    align-items: start;
+    left: 5rem;
+}
+.serv-right {
+    width: 50%;
+}
+.serv-cont .serv-anim-right:hover {
+    animation: serv-anim-right .5s ;
+    animation-fill-mode: forwards;
+}
+@keyframes serv-anim-right {
+    from {
+        transform: translate(0);
+    }
+    to {
+        transform: translate(-150px);
+    }
+}
+
+
+
+/* ECO */
+.eco-cont {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-image: url("/assets/img/habi/habi_6.jpg");
+}
+.eco-titles {
+    padding: 10% 0;
+}
+.eco-ban {
+    font-size: 48px ;
+    padding: 3% 1%;
+}
+.eco-t1 {
+    left: 10%;
+}
+.eco-t2 {
+    left: 20%;
+}
+.eco-t3 {
+    left: 30%;
+}
+.eco-t4 {
+    left: 20%;
+    display: none;
+}
+.btn-cadav {
+    text-align: center;
+    padding: 3%;
+}
+.eco-titles div {
+    padding: 3%;
+    font-size: 20px;
+    position: relative;
+}
+.eco-btn:focus .eco-titles .eco-t4 {
+    display: block;
+}
+
+/* FOTER */
+.foo-cont {
+    background: #222222;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 5% 0 2% 0;
+}
+.foo-ico {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* TAILLE D'ELEMENT */
+.s50p {width: 50%}
+.s25p {width: 25%}
+.s15p {width: 15%}
+.s10p {width: 10%}
+.s5p {width: 5%}
+.s512 {width: 512px}
+.s256 {width: 256px}
+.s128 {width: 128px}
+.s64 {width: 64px}
+.s32 {width: 32px}
+.s24 {width: 24px}
+
+/* POLICE D'ECRITURE */
+@font-face {
+    font-family: p_defaut;
+    src: url("../../p_defaut.ttf");
+}
+@font-face {
+    font-family: p_jeu;
+    src: url("../../p_jeu.ttf");
+}
+.f_jeu {
+    font-family: "p_jeu", auto;
+}
+.f_defaut {
+    font-family: "p_defaut", auto;
+}
+
+/* Mobile Version Media query CSS3 */
+/* Telephones */
+@media screen and (max-width: 600px) {
+    .bg {
+        height: 20rem;
+    }
+    .fs32 {
+        font-size: 12px;
+    }
+    .fs64 {
+        font-size: 20px;
+    }
+    .s64 {
+        width: 32px;
+    }
+    .hero_p {
+        display: flex;
+        position: absolute;
+        bottom: 0px;
+        padding: 16px;
+        text-align: left;
+        max-width: 500px;
+    }
+    .hero_bg {
+        height: 25rem;
+    }
+    .game_img {
+        width: 64px;
+    }
+    .lang {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        background-color: #e5ff9c;
+        box-shadow: 0px 0px 10px 3px black;
+        top: -7rem;
+        left: 1rem;
+        padding: 10%;
+        font-size: 12px;
+    }
+    .lang-sel a {
+        font-size: 20px;
+    }
+    .game_cont {
+        display: flex;
+        flex-direction: column;
+        font-size: 12px;
+        position: absolute;
+        bottom: 7rem;
+        right: 1rem;
+    }
+}
+
+
+
