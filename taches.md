@@ -51,3 +51,20 @@ scraping playwrite
 https://www.youtube.com/watch?v=RGR5Xj0Qqfs
 scraping crawl4ai
 https://github.com/unclecode/crawl4ai
+
+################# DEBUG
+npm i bootstrap@5.3.8
+(⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂⠂) ⠼ idealTree:arcadia: sill idealTree buildDeps
+npm ERR! code EHOSTUNREACH
+npm ERR! syscall connect
+npm ERR! errno EHOSTUNREACH
+npm ERR! request to https://registry.npmjs.org/bootstrap failed, reason: connect EHOSTUNREACH 2606:4700::6810:1e22:443
+
+# ETAPE 1 mise a jour
+sudo apt update
+
+# ETAPE 2 clear cache NPM
+https://techdirectarchive.com/2023/07/08/how-to-fix-npm-install-hangs-on-sill-idealtree-builddeps/
+npm cache clear --force
+npm config set registry http://registry.npmjs.org
+
