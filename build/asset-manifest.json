@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/arcadia/static/css/main.7c7a96ce.css",
+    "main.js": "/arcadia/static/js/main.e5e306c8.js",
+    "static/media/K2D-text.ttf": "/arcadia/static/media/K2D-text.658878147ea00e3f12ae.ttf",
+    "static/media/3": "/arcadia/static/media/3.725cbdf2e198f5803923",
+    "static/media/icon.png": "/arcadia/static/media/icon.4a78c3b605ede991e8d7.png",
+    "static/media/anim_icon3.png": "/arcadia/static/media/anim_icon3.84a6a120c2723b2c0d8d.png",
+    "static/media/anim_icon4.png": "/arcadia/static/media/anim_icon4.1a2cee201113952de223.png",
+    "index.html": "/arcadia/index.html",
+    "main.7c7a96ce.css.map": "/arcadia/static/css/main.7c7a96ce.css.map",
+    "main.e5e306c8.js.map": "/arcadia/static/js/main.e5e306c8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7c7a96ce.css",
+    "static/js/main.e5e306c8.js"
+  ]
+}
